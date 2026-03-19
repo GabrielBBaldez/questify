@@ -153,7 +153,7 @@ export const sampleQuizData = {
     {
       type: "multiple_choice",
       text: "Observe a imagem abaixo. Qual estrutura celular é responsável pela produção de energia (ATP) na célula?",
-      image: "https://placehold.co/600x400/1a1a2e/eee?text=C%C3%A9lula+Animal",
+      image: "/questify/images/celula-animal.svg",
       alternatives: [
         { id: "A", text: "Ribossomo" },
         { id: "B", text: "Mitocôndria" },

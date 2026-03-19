@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" font-family="Arial, sans-serif">
+  <!-- Cell membrane -->
+  <ellipse cx="300" cy="200" rx="270" ry="175" fill="#fce4b8" stroke="#c8a060" stroke-width="4"/>
+  <ellipse cx="300" cy="200" rx="260" ry="167" fill="#fef3dc" stroke="#d4b070" stroke-width="2"/>
+
+  <!-- Nucleus -->
+  <ellipse cx="300" cy="195" rx="90" ry="75" fill="#b8d4f0" stroke="#5a8ab5" stroke-width="3"/>
+  <ellipse cx="300" cy="195" rx="80" ry="67" fill="#d0e4f8" stroke="#7aa0c8" stroke-width="1.5"/>
+  <!-- Nucleolus -->
+  <circle cx="310" cy="190" r="22" fill="#7a9fc0" stroke="#5a8ab5" stroke-width="2"/>
+  <text x="310" y="194" text-anchor="middle" font-size="9" fill="white" font-weight="bold">Nucl&#233;olo</text>
+  <text x="300" y="230" text-anchor="middle" font-size="11" fill="#3a5a7a" font-weight="bold">N&#250;cleo</text>
+
+  <!-- Mitochondria -->
+  <g transform="translate(130, 120) rotate(-20)">
+    <ellipse cx="0" cy="0" rx="35" ry="16" fill="#f4a460" stroke="#d08040" stroke-width="2"/>
+    <path d="M-25,-5 Q-15,8 -5,-5 Q5,8 15,-5 Q25,8 30,-2" fill="none" stroke="#d08040" stroke-width="1.5"/>
+    <text x="0" y="30" text-anchor="middle" font-size="10" fill="#8B4513" font-weight="bold">Mitoc&#244;ndria</text>
+  </g>
+
+  <!-- Another mitochondria -->
+  <g transform="translate(470, 270) rotate(15)">
+    <ellipse cx="0" cy="0" rx="32" ry="14" fill="#f4a460" stroke="#d08040" stroke-width="2"/>
+    <path d="M-22,-4 Q-12,7 -2,-4 Q8,7 18,-4 Q26,5 28,-1" fill="none" stroke="#d08040" stroke-width="1.5"/>
+  </g>
+
+  <!-- Endoplasmic Reticulum (rough) -->
+  <g transform="translate(410, 150)">
+    <path d="M0,0 Q20,15 0,30 Q-20,45 0,60 Q20,75 0,90" fill="none" stroke="#8fbc8f" stroke-width="3"/>
+    <path d="M10,0 Q30,15 10,30 Q-10,45 10,60 Q30,75 10,90" fill="none" stroke="#8fbc8f" stroke-width="3"/>
+    <!-- Ribosomes on rough ER -->
+    <circle cx="0" cy="5" r="3" fill="#556b2f"/>
+    <circle cx="10" cy="5" r="3" fill="#556b2f"/>
+    <circle cx="-2" cy="25" r="3" fill="#556b2f"/>
+    <circle cx="12" cy="25" r="3" fill="#556b2f"/>
+    <circle cx="0" cy="50" r="3" fill="#556b2f"/>
+    <circle cx="10" cy="50" r="3" fill="#556b2f"/>
+    <text x="5" y="108" text-anchor="middle" font-size="9" fill="#2e4a2e" font-weight="bold">RE Rugoso</text>
+  </g>
+
+  <!-- Golgi Apparatus -->
+  <g transform="translate(160, 260)">
+    <path d="M-30,0 Q0,-12 30,0" fill="none" stroke="#daa520" stroke-width="4"/>
+    <path d="M-28,8 Q0,-4 28,8" fill="none" stroke="#daa520" stroke-width="3.5"/>
+    <path d="M-25,16 Q0,4 25,16" fill="none" stroke="#daa520" stroke-width="3"/>
+    <path d="M-22,24 Q0,12 22,24" fill="none" stroke="#daa520" stroke-width="2.5"/>
+    <circle cx="35" cy="5" r="5" fill="#f0d060" stroke="#daa520" stroke-width="1.5"/>
+    <circle cx="38" cy="15" r="4" fill="#f0d060" stroke="#daa520" stroke-width="1.5"/>
+    <text x="0" y="42" text-anchor="middle" font-size="10" fill="#8B6914" font-weight="bold">C. de Golgi</text>
+  </g>
+
+  <!-- Ribosomes (free) -->
+  <circle cx="240" cy="310" r="4" fill="#556b2f"/>
+  <circle cx="255" cy="315" r="4" fill="#556b2f"/>
+  <circle cx="248" cy="325" r="4" fill="#556b2f"/>
+  <circle cx="262" cy="305" r="4" fill="#556b2f"/>
+  <text x="250" y="345" text-anchor="middle" font-size="9" fill="#2e4a2e" font-weight="bold">Ribossomos</text>
+
+  <!-- Lysosomes -->
+  <circle cx="450" cy="320" r="18" fill="#e8a0a0" stroke="#c06060" stroke-width="2"/>
+  <text x="450" y="324" text-anchor="middle" font-size="8" fill="#8b2020" font-weight="bold">Lisossomo</text>
+
+  <!-- Centrosome -->
+  <g transform="translate(200, 130)">
+    <line x1="-12" y1="0" x2="12" y2="0" stroke="#808080" stroke-width="3"/>
+    <line x1="0" y1="-12" x2="0" y2="12" stroke="#808080" stroke-width="3"/>
+    <text x="0" y="25" text-anchor="middle" font-size="9" fill="#505050" font-weight="bold">Centrossomo</text>
+  </g>
+
+  <!-- Title -->
+  <text x="300" y="388" text-anchor="middle" font-size="14" fill="#555" font-weight="bold">C&#233;lula Animal</text>
+
+  <!-- Membrane label -->
+  <text x="540" y="65" text-anchor="end" font-size="10" fill="#8B6914" font-weight="bold">Membrana</text>
+  <text x="540" y="78" text-anchor="end" font-size="10" fill="#8B6914" font-weight="bold">Plasm&#225;tica</text>
+  <line x1="495" y1="72" x2="520" y2="55" stroke="#8B6914" stroke-width="1"/>
+</svg>
