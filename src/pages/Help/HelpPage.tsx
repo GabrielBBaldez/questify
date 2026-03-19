@@ -17,6 +17,7 @@ import {
   FileText,
   Settings,
   Search,
+  Star,
 } from 'lucide-react';
 import styles from './HelpPage.module.css';
 
@@ -111,7 +112,19 @@ const sections: HelpSection[] = [
     icon: <Search size={24} />,
     title: 'Consulta de Questões',
     content:
-      'Na página inicial, clique no ícone de lupa em qualquer banco para abrir o modo de consulta. Você pode buscar por palavra-chave no enunciado, alternativas, tags ou explicações. Ideal para revisar questões específicas.',
+      'Na página inicial, clique em "Consultar" em qualquer banco para abrir o modo de consulta. Você pode buscar por palavra-chave no enunciado, alternativas, tags ou explicações. Ideal para revisar questões específicas.',
+  },
+  {
+    icon: <Star size={24} />,
+    title: 'Favoritar Questões',
+    content:
+      'Clique na estrela ao lado de qualquer questão para marcá-la como favorita. Os favoritos ficam salvos e você pode acessá-los a qualquer momento.',
+    tips: [
+      'Favorite durante o treino, na revisão pós-quiz ou na consulta',
+      'Na consulta, use o botão de estrela na barra de busca para filtrar e ver só as favoritas',
+      'Os favoritos são salvos por banco — cada banco tem sua lista independente',
+      'Clique na estrela novamente para remover dos favoritos',
+    ],
   },
   {
     icon: <Shuffle size={24} />,
@@ -176,6 +189,7 @@ const sections: HelpSection[] = [
       'Use o botão Pular quando não souber a resposta — é melhor pular do que chutar!',
       'Sempre ative o embaralhamento para não decorar a ordem',
       'Acompanhe o gráfico de evolução para ver seu progresso',
+      'Favorite as questões que errou para revisar depois na consulta',
       'Exporte seus bancos para ter backup!',
     ],
   },
