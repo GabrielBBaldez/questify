@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router';
-import { Play, Pencil, Download, Trash2, FileText, Calendar, BookOpen } from 'lucide-react';
+import { Play, Pencil, Download, Trash2, FileText, Calendar, BookOpen, RotateCcw } from 'lucide-react';
 import type { Quiz } from '../../types/quiz';
+import { useResultsStorage } from '../../hooks/useResultsStorage';
+import { SKIPPED_ANSWER } from '../../constants/quiz';
 import { exportQuizAsJson } from '../../utils/jsonExport';
 import styles from './QuizCard.module.css';
 
@@ -11,9 +13,23 @@ interface QuizCardProps {
 
 export function QuizCard({ quiz, onDelete }: QuizCardProps) {
   const navigate = useNavigate();
+  const { getResultsForQuiz } = useResultsStorage();
 
   const questionCount = quiz.questions.length;
   const date = new Date(quiz.createdAt).toLocaleDateString('pt-BR');
+
+  // Count unique wrong questions across all attempts
+  const results = getResultsForQuiz(quiz.id);
+  const wrongQuestionIds = new Set<string>();
+  results.forEach((r) => {
+    quiz.questions.forEach((q) => {
+      const answer = r.answers[q.id];
+      if (answer && answer !== SKIPPED_ANSWER && answer !== q.correctAnswer) {
+        wrongQuestionIds.add(q.id);
+      }
+    });
+  });
+  const errorCount = wrongQuestionIds.size;
 
   return (
     <div className={styles.card}>
@@ -59,6 +75,15 @@ export function QuizCard({ quiz, onDelete }: QuizCardProps) {
           <Pencil size={16} />
           Editar
         </button>
+        {errorCount > 0 && (
+          <button
+            className={`${styles.actionBtn} ${styles.errorBtn}`}
+            onClick={() => navigate(`/play/${quiz.id}?errorReview=true`)}
+          >
+            <RotateCcw size={16} />
+            Revisar Erros ({errorCount})
+          </button>
+        )}
         <button
           className={`${styles.actionBtn} ${styles.exportBtn}`}
           onClick={() => exportQuizAsJson(quiz)}

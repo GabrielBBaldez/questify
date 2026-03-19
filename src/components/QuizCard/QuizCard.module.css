@@ -105,6 +105,16 @@
   background-color: var(--color-border);
 }
 
+.errorBtn {
+  background-color: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+}
+
+.errorBtn:hover {
+  background-color: #f59e0b;
+  color: white;
+}
+
 .deleteBtn {
   background-color: var(--color-danger-light);
   color: var(--color-danger);

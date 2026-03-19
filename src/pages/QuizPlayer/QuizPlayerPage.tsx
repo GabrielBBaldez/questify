@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { useParams, useNavigate, Link } from 'react-router';
+import { useParams, useNavigate, useSearchParams, Link } from 'react-router';
 import { Home } from 'lucide-react';
 import { useQuizStorage } from '../../hooks/useQuizStorage';
+import { useResultsStorage } from '../../hooks/useResultsStorage';
 import { useFavoritesStorage } from '../../hooks/useFavoritesStorage';
 import { useTimer } from '../../hooks/useTimer';
 import { ModeSelector } from '../../components/ModeSelector/ModeSelector';
@@ -39,7 +40,10 @@ function shuffleAlternatives(question: Question): Question {
 export function QuizPlayerPage() {
   const { quizId } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const isErrorReview = searchParams.get('errorReview') === 'true';
   const { getQuiz } = useQuizStorage();
+  const { getResultsForQuiz } = useResultsStorage();
   const { isFavorite, toggleFavorite } = useFavoritesStorage();
   const { seconds, start, stop } = useTimer();
 
@@ -75,6 +79,21 @@ export function QuizPlayerPage() {
 
   const handleStart = () => {
     let questions = [...quiz.questions];
+
+    // Error review mode: filter only questions the user got wrong
+    if (isErrorReview) {
+      const results = getResultsForQuiz(quiz.id);
+      const wrongIds = new Set<string>();
+      results.forEach((r) => {
+        quiz.questions.forEach((q) => {
+          const answer = r.answers[q.id];
+          if (answer && answer !== SKIPPED_ANSWER && answer !== q.correctAnswer) {
+            wrongIds.add(q.id);
+          }
+        });
+      });
+      questions = questions.filter((q) => wrongIds.has(q.id));
+    }
 
     if (settings.shuffleQuestions) {
       questions = shuffle(questions);
@@ -164,8 +183,12 @@ export function QuizPlayerPage() {
 
   return (
     <div>
-      <h1 className={styles.quizTitle}>{quiz.title}</h1>
-      <p className={styles.quizMeta}>{quiz.subject} - {quiz.questions.length} questões</p>
+      <h1 className={styles.quizTitle}>
+        {isErrorReview ? `Revisão de Erros - ${quiz.title}` : quiz.title}
+      </h1>
+      <p className={styles.quizMeta}>
+        {quiz.subject} - {isErrorReview ? 'Apenas questões que você errou' : `${quiz.questions.length} questões`}
+      </p>
 
       {phase === 'mode' && (
         <ModeSelector selected={settings.mode} onSelect={handleModeSelect} />
