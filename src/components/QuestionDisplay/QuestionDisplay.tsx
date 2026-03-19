@@ -1,5 +1,6 @@
-import { ChevronLeft, ChevronRight, CheckCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, CheckCircle, SkipForward } from 'lucide-react';
 import type { Question, QuizMode } from '../../types/quiz';
+import { SKIPPED_ANSWER } from '../../constants/quiz';
 import { AlternativeButton } from '../AlternativeButton/AlternativeButton';
 import styles from './QuestionDisplay.module.css';
 
@@ -9,6 +10,7 @@ interface QuestionDisplayProps {
   selectedAnswer: string | null;
   mode: QuizMode;
   onSelectAnswer: (altId: string) => void;
+  onSkip: () => void;
   onPrev: () => void;
   onNext: () => void;
   onFinish: () => void;
@@ -22,17 +24,20 @@ export function QuestionDisplay({
   selectedAnswer,
   mode,
   onSelectAnswer,
+  onSkip,
   onPrev,
   onNext,
   onFinish,
   canGoPrev,
   isLast,
 }: QuestionDisplayProps) {
-  const hasAnswered = selectedAnswer !== null;
+  const isSkipped = selectedAnswer === SKIPPED_ANSWER;
+  const hasAnswered = selectedAnswer !== null && !isSkipped;
   const showFeedback = mode !== 'simulado' && hasAnswered;
   const showExplanation = mode === 'revisao' && hasAnswered;
-  const isDisabled = mode !== 'simulado' && hasAnswered;
-  const isCorrect = selectedAnswer === question.correctAnswer;
+  const isDisabled = mode !== 'simulado' && (hasAnswered || isSkipped);
+  const isCorrect = hasAnswered && selectedAnswer === question.correctAnswer;
+  const canSkip = !hasAnswered;
 
   return (
     <div className={styles.container}>
@@ -60,7 +65,7 @@ export function QuestionDisplay({
           <AlternativeButton
             key={alt.id}
             alternative={alt}
-            isSelected={selectedAnswer === alt.id}
+            isSelected={!isSkipped && selectedAnswer === alt.id}
             isCorrect={alt.id === question.correctAnswer}
             showFeedback={showFeedback}
             showExplanation={showExplanation}
@@ -90,6 +95,16 @@ export function QuestionDisplay({
         >
           <ChevronLeft size={18} />
           Anterior
+        </button>
+
+        <button
+          className={`${styles.navBtn} ${isSkipped ? styles.skipBtnActive : styles.skipBtn}`}
+          onClick={onSkip}
+          disabled={!canSkip}
+          aria-label="Pular questão"
+        >
+          <SkipForward size={18} />
+          {isSkipped ? 'Pulada' : 'Pular'}
         </button>
 
         {isLast ? (

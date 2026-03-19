@@ -129,3 +129,28 @@
   color: var(--color-text-secondary);
   line-height: 1.6;
 }
+
+.skipBtn {
+  background-color: var(--color-bg-hover);
+  color: var(--color-text-secondary);
+}
+
+.skipBtn:hover:not(:disabled) {
+  background-color: var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.skipBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.skipBtnActive {
+  background-color: var(--color-warning-light);
+  color: var(--color-warning);
+}
+
+.skipBtnActive:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
