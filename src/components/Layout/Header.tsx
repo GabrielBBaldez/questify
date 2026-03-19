@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router';
 import { BookOpen, Home, PlusCircle, BarChart3, HelpCircle, Sparkles } from 'lucide-react';
 import { ThemeToggle } from '../ThemeToggle/ThemeToggle';
+import { UserAvatar } from '../UserAvatar/UserAvatar';
 import styles from './Header.module.css';
 
 export function Header() {
@@ -39,6 +40,7 @@ export function Header() {
 
       <div className={styles.actions}>
         <ThemeToggle />
+        <UserAvatar />
       </div>
     </header>
   );
