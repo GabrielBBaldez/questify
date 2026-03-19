@@ -31,3 +31,10 @@
     transform: translateY(100vh) rotateZ(720deg) scale(0.5);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .piece {
+    animation: none;
+    display: none;
+  }
+}
