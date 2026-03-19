@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ChevronDown, Check, X, SkipForward } from 'lucide-react';
-import type { Question } from '../../types/quiz';
+import type { Question, AssertionQuestion } from '../../types/quiz';
 import { SKIPPED_ANSWER } from '../../constants/quiz';
 import styles from './QuestionReview.module.css';
 
@@ -61,6 +61,18 @@ export function QuestionReview({ question, questionNumber, userAnswer }: Questio
 
           {question.image && (
             <img src={question.image} alt="Imagem da questão" className={styles.questionImage} />
+          )}
+
+          {question.type === 'assertion' && (
+            <div className={styles.altList} style={{ marginBottom: 'var(--spacing-md)' }}>
+              {(question as AssertionQuestion).assertions.map((a) => (
+                <div key={a.id} className={`${styles.altItem} ${a.correct ? styles.altCorrect : styles.altWrong}`}>
+                  <span className={styles.altLetter}>{a.id}.</span>
+                  <span>{a.text}</span>
+                  {a.correct ? <Check size={14} /> : <X size={14} />}
+                </div>
+              ))}
+            </div>
           )}
 
           <div className={styles.altList}>

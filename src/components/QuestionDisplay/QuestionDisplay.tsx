@@ -1,5 +1,5 @@
 import { ChevronLeft, ChevronRight, CheckCircle, SkipForward } from 'lucide-react';
-import type { Question, QuizMode } from '../../types/quiz';
+import type { Question, QuizMode, AssertionQuestion } from '../../types/quiz';
 import { SKIPPED_ANSWER } from '../../constants/quiz';
 import { AlternativeButton } from '../AlternativeButton/AlternativeButton';
 import styles from './QuestionDisplay.module.css';
@@ -49,9 +49,9 @@ export function QuestionDisplay({
         <img src={question.image} alt="Imagem da questão" className={styles.questionImage} />
       )}
 
-      {question.type === 'assertion' && 'assertions' in question && (
+      {question.type === 'assertion' && (
         <div className={styles.assertionsList}>
-          {(question as any).assertions.map((a: any) => (
+          {(question as AssertionQuestion).assertions.map((a) => (
             <div className={styles.assertionItem} key={a.id}>
               <span className={styles.assertionId}>{a.id}.</span>
               <span>{a.text}</span>

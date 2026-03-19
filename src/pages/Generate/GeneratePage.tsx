@@ -126,7 +126,7 @@ const TIPS = [
   'Revise o JSON gerado antes de importar — a IA pode errar o gabarito',
   'Para provas com imagens, você precisará adicionar as imagens manualmente depois',
   'Se a IA cortar o JSON no meio, peca "continue de onde parou"',
-  'Modelos maiores (GPT-4, Claude 3.5) geram JSONs mais precisos que modelos menores',
+  'Modelos maiores (GPT-4o, Claude Sonnet, Gemini Pro) geram JSONs mais precisos que modelos menores',
   'Você pode pedir pra IA adicionar explicações por alternativa dizendo "explique cada alternativa"',
 ];
 

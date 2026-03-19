@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router';
 import { Search, Home, Check, X, Hash } from 'lucide-react';
 import { useQuizStorage } from '../../hooks/useQuizStorage';
+import type { AssertionQuestion } from '../../types/quiz';
 import styles from './ConsultPage.module.css';
 
 const TYPE_LABELS: Record<string, string> = {
@@ -28,8 +29,8 @@ export function ConsultPage() {
       if (q.alternatives.some((a) => a.text.toLowerCase().includes(term))) return true;
       if (q.alternatives.some((a) => a.explanation?.toLowerCase().includes(term))) return true;
       if (q.tags?.some((t) => t.toLowerCase().includes(term))) return true;
-      if (q.type === 'assertion' && 'assertions' in q) {
-        if ((q as any).assertions.some((a: any) => a.text.toLowerCase().includes(term))) return true;
+      if (q.type === 'assertion') {
+        if ((q as AssertionQuestion).assertions.some((a) => a.text.toLowerCase().includes(term))) return true;
       }
       return false;
     });
@@ -95,9 +96,9 @@ export function ConsultPage() {
               <img src={q.image} alt="Imagem da questão" className={styles.questionImage} />
             )}
 
-            {q.type === 'assertion' && 'assertions' in q && (
+            {q.type === 'assertion' && (
               <div className={styles.assertionsList}>
-                {(q as any).assertions.map((a: any) => (
+                {(q as AssertionQuestion).assertions.map((a) => (
                   <div className={styles.assertionItem} key={a.id}>
                     <span className={styles.assertionId}>{a.id}.</span>
                     <span>{a.text}</span>

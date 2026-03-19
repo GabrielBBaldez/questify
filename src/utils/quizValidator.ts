@@ -94,9 +94,10 @@ export function validateQuiz(data: unknown): ValidationResult {
         alternatives: qObj.alternatives as Question['alternatives'],
         correctAnswer: qObj.correctAnswer as string,
         explanation: (qObj.explanation as string) || undefined,
+        tags: Array.isArray(qObj.tags) ? (qObj.tags as string[]) : undefined,
       };
       if (type === 'assertion') {
-        return { ...base, type: 'assertion' as const, assertions: qObj.assertions as any };
+        return { ...base, type: 'assertion' as const, assertions: qObj.assertions as { id: string; text: string; correct: boolean }[] };
       }
       if (type === 'true_false') {
         return { ...base, type: 'true_false' as const };

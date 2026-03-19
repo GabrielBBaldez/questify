@@ -59,6 +59,7 @@ const sections: HelpSection[] = [
       'Simulado — Responde todas as questões e vê o resultado só no final. Pode voltar e alterar respostas. Ideal para simular a prova real',
       'Estudo — Recebe feedback imediato após cada questão (certo ou errado). Bom para o dia a dia de estudo',
       'Revisão — Além do feedback, mostra a explicação de cada alternativa. Perfeito para entender seus erros',
+      'Em todos os modos, você pode Pular uma questão. Questões puladas não contam na sua pontuação (nem como certa nem como errada)',
     ],
   },
   {
@@ -172,6 +173,7 @@ const sections: HelpSection[] = [
       'Comece no modo Revisão para aprender o conteúdo e entender seus erros',
       'Depois passe para o modo Estudo no dia a dia para fixar',
       'Use o modo Simulado periodicamente para testar seu nível real',
+      'Use o botão Pular quando não souber a resposta — é melhor pular do que chutar!',
       'Sempre ative o embaralhamento para não decorar a ordem',
       'Acompanhe o gráfico de evolução para ver seu progresso',
       'Exporte seus bancos para ter backup!',
