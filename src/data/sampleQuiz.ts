@@ -131,5 +131,38 @@ export const sampleQuizData = {
       explanation: "JavaScript é a linguagem de programação padrão para desenvolvimento web, rodando nativamente nos navegadores.",
       tags: ["Tecnologia"],
     },
+    {
+      type: "assertion",
+      text: "Analise as afirmativas sobre o Sistema Solar:",
+      assertions: [
+        { id: "I", text: "O Sol é uma estrela de tipo espectral G, classificada como anã amarela.", correct: true },
+        { id: "II", text: "Marte é o maior planeta do Sistema Solar.", correct: false },
+        { id: "III", text: "A Lua é o único satélite natural da Terra.", correct: true },
+        { id: "IV", text: "Plutão foi reclassificado como planeta anão em 2006.", correct: true },
+      ],
+      alternatives: [
+        { id: "A", text: "Apenas I e II estão corretas" },
+        { id: "B", text: "Apenas I, III e IV estão corretas" },
+        { id: "C", text: "Apenas II e III estão corretas" },
+        { id: "D", text: "Todas estão corretas" },
+      ],
+      correctAnswer: "B",
+      explanation: "A afirmativa II está incorreta: o maior planeta do Sistema Solar é Júpiter, não Marte. As demais estão corretas.",
+      tags: ["Astronomia"],
+    },
+    {
+      type: "multiple_choice",
+      text: "Observe a imagem abaixo. Qual estrutura celular é responsável pela produção de energia (ATP) na célula?",
+      image: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Animal_cell_structure_en.svg/800px-Animal_cell_structure_en.svg.png",
+      alternatives: [
+        { id: "A", text: "Ribossomo" },
+        { id: "B", text: "Mitocôndria" },
+        { id: "C", text: "Complexo de Golgi" },
+        { id: "D", text: "Retículo endoplasmático" },
+      ],
+      correctAnswer: "B",
+      explanation: "A mitocôndria é a organela responsável pela respiração celular e produção de ATP, sendo conhecida como a 'usina de energia' da célula.",
+      tags: ["Biologia", "Citologia"],
+    },
   ],
 };
