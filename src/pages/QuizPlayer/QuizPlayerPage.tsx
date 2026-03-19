@@ -95,7 +95,14 @@ export function QuizPlayerPage() {
 
   const handleSelectAnswer = (altId: string) => {
     const qId = preparedQuestions[currentIndex].id;
-    setAnswers((prev) => ({ ...prev, [qId]: altId }));
+    setAnswers((prev) => {
+      if (prev[qId] === altId) {
+        const next = { ...prev };
+        delete next[qId];
+        return next;
+      }
+      return { ...prev, [qId]: altId };
+    });
   };
 
   const handleNext = () => {
@@ -173,7 +180,7 @@ export function QuizPlayerPage() {
 
       {phase === 'playing' && currentQuestion && (
         <>
-          <ProgressBar current={currentIndex} total={preparedQuestions.length} seconds={seconds} answers={answers} questions={preparedQuestions} />
+          <ProgressBar current={currentIndex} total={preparedQuestions.length} seconds={seconds} />
           <QuestionDisplay
             question={currentQuestion}
             questionNumber={currentIndex + 1}
