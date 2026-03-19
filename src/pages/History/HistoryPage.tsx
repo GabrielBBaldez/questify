@@ -177,7 +177,10 @@ export function HistoryPage() {
                     </span>
                   </div>
                   <div className={styles.resultMeta}>
-                    <span>{r.correctCount}/{r.totalQuestions} acertos</span>
+                    <span>
+                      {r.correctCount}/{r.totalQuestions - (r.skippedCount ?? 0)} acertos
+                      {(r.skippedCount ?? 0) > 0 && ` (${r.skippedCount} puladas)`}
+                    </span>
                     <span>·</span>
                     <span><Clock size={12} /> {formatTime(r.timeTakenSeconds)}</span>
                     <span>·</span>
