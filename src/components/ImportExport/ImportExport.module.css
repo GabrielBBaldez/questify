@@ -1,3 +1,7 @@
+.importWrapper {
+  position: relative;
+}
+
 .importBtn {
   display: inline-flex;
   align-items: center;
@@ -22,14 +26,21 @@
   display: none;
 }
 
+.error,
+.success {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  white-space: nowrap;
+}
+
 .error {
   color: var(--color-danger);
-  font-size: var(--font-size-sm);
-  margin-top: var(--spacing-sm);
 }
 
 .success {
   color: var(--color-success);
-  font-size: var(--font-size-sm);
-  margin-top: var(--spacing-sm);
 }

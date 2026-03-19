@@ -37,7 +37,7 @@ export function ImportButton({ onImport }: ImportButtonProps) {
   };
 
   return (
-    <div>
+    <div className={styles.importWrapper}>
       <input
         ref={inputRef}
         type="file"
