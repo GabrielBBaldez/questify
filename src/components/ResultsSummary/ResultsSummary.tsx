@@ -22,6 +22,10 @@ const MODE_NAMES: Record<string, string> = {
 };
 
 export function ResultsSummary({ result, isPerfect, timeRecord }: ResultsSummaryProps) {
+  const skippedCount = result.skippedCount ?? 0;
+  const answeredCount = result.totalQuestions - skippedCount;
+  const wrongCount = answeredCount - result.correctCount;
+
   const scoreClass =
     result.percentage >= 70
       ? styles.scoreGood
@@ -35,7 +39,7 @@ export function ResultsSummary({ result, isPerfect, timeRecord }: ResultsSummary
       <h2 className={styles.title}>Resultado</h2>
       <span className={styles.modeBadge}>{MODE_NAMES[result.mode] || result.mode}</span>
       <div className={`${styles.score} ${scoreClass}`}>
-        {result.correctCount} / {result.totalQuestions}
+        {result.correctCount} / {answeredCount}
       </div>
       <div className={`${styles.percentage} ${scoreClass}`}>
         {result.percentage}%
@@ -61,13 +65,19 @@ export function ResultsSummary({ result, isPerfect, timeRecord }: ResultsSummary
           <span className={styles.statLabel}>Tempo</span>
         </div>
         <div className={styles.stat}>
-          <span className={styles.statValue}>{result.correctCount}</span>
+          <span className={`${styles.statValue} ${styles.statCorrect}`}>{result.correctCount}</span>
           <span className={styles.statLabel}>Acertos</span>
         </div>
         <div className={styles.stat}>
-          <span className={styles.statValue}>{result.totalQuestions - result.correctCount}</span>
+          <span className={`${styles.statValue} ${styles.statWrong}`}>{wrongCount}</span>
           <span className={styles.statLabel}>Erros</span>
         </div>
+        {skippedCount > 0 && (
+          <div className={styles.stat}>
+            <span className={`${styles.statValue} ${styles.statSkipped}`}>{skippedCount}</span>
+            <span className={styles.statLabel}>Puladas</span>
+          </div>
+        )}
       </div>
     </div>
   );
